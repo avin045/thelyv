@@ -1,0 +1,48 @@
+# Thelyv
+
+**Know what you learned, not just what you saved.**
+
+Thelyv is a learning guide for your AI chats. Type `/thelyv`, pick what you want to do, and Thelyv keeps you on your goal, moves deep tangents into their own chats, helps you prepare for interviews, and saves what you learned to your own Notion or Google Drive when you ask. A month later, `thelyv-find` gets it back and quizzes you on it.
+
+Thelyv is a set of five skills in `skills/`, written to work in any AI tool that can load skills.
+
+## Install
+
+**What works best:**
+- **Saving notes:** Notion (recommended) or Google Drive connected to your AI tool. Coding agents can also keep notes in a `~/Thelyv` folder on your computer. Without any of these, Thelyv gives you a `.md` file, or the note to copy. If nothing is connected, Thelyv walks you through connecting Notion the first time you save.
+- **Checked links and up-to-date answers:** turn on web search.
+
+**Any agent, one command** (uses the community [`skills`](https://github.com/vercel-labs/skills) installer, which finds the skills folder of every agent you have: Claude Code, Codex, OpenCode, Cursor, Gemini CLI and dozens more):
+```
+npx skills add avin045/thelyv
+```
+
+**Or use your agent's own installer:**
+
+| Agent | Install |
+|---|---|
+| Claude apps (claude.ai, Desktop) | Turn on **Code execution and file creation** (Settings > Capabilities), then Customize > Plugins, add the marketplace `avin045/thelyv` and install **thelyv**. |
+| Claude Code | `/plugin marketplace add avin045/thelyv`, then `/plugin install thelyv@thelyv` |
+| Codex | `codex plugin marketplace add avin045/thelyv`, then install **thelyv** from the plugin list (`codex plugin add thelyv@thelyv`, or the Plugins page in the desktop app) |
+| OpenCode | Copy the five folders in `skills/` into `~/.config/opencode/skills/` (OpenCode also reads `~/.claude/skills/` and `~/.agents/skills/`) |
+| Cursor | Copy the five folders into `~/.cursor/skills/`. The repo is also a valid Cursor plugin (root `plugin.json`) once it's listed. |
+| Gemini CLI | `gemini extensions install https://github.com/avin045/thelyv`, or skills only: `gemini skills install https://github.com/avin045/thelyv.git --path skills` |
+| Antigravity CLI | `agy plugin install https://github.com/avin045/thelyv.git` |
+| Anything else that loads `SKILL.md` folders | Copy the five folders in `skills/` into its skills folder, as its docs describe. |
+
+**Calling the skills.** Most agents use the skill name as a command: `/thelyv`, `/thelyv-goal`, `/thelyv-find`. The Claude plugin puts the plugin name first (`/thelyv:thelyv-goal`), Codex uses `$thelyv-goal`, and OpenCode `@thelyv-goal`. Or just ask: "start a Thelyv session on React hooks".
+
+## Use
+
+| Skill | What it does |
+|---|---|
+| `/thelyv` | Menu: pick what to do. `/thelyv <topic>` starts learning that topic straight away. |
+| `thelyv-goal` | Learn a topic with a goal. Choose goal-driven (Thelyv steers, with a Recommended next step) or user-driven (you steer). Drift gets numbered options: branch it, take a quick look in a private chat, or stay. |
+| `thelyv-interview-mode` | Interview prep in very simple English, shaped by your level and how much time is left. |
+| `thelyv-find <words>` | Find a past note, then quiz yourself on it, open it, or keep learning from it. |
+| `thelyv-save` | Save this chat as a note. "Save this to Thelyv" or "wrap up" works too, in any chat. |
+
+Every choice Thelyv offers is numbered, so you can answer with just "1".
+
+## Status
+v0.2: dogfooding. See [AGENTS.md](AGENTS.md) for the full product and architecture notes.

@@ -1,0 +1,21 @@
+{
+  "name": "thelyv",
+  "owner": {
+    "name": "Avin",
+    "url": "https://github.com/avin045"
+  },
+  "description": "Thelyv: know what you learned, not just what you saved.",
+  "plugins": [
+    {
+      "name": "thelyv",
+      "source": "./",
+      "description": "A learning guide for any AI chat: goal-focused sessions, branch chats for deep tangents, interview prep, notes saved to your Notion or Google Drive, and /thelyv:thelyv-find to get them back.",
+      "category": "productivity",
+      "keywords": [
+        "learning",
+        "notes",
+        "study"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+# Dependencies and builds
+node_modules/
+dist/
+.wrangler/
+.output/
+
+# Secrets
+.env
+.env.*
+!.env.example
+.dev.vars
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Claude Code local files
+.claude/settings.local.json
+.claude/worktrees/
+
+# Local build snapshots
+*.zip

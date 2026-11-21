@@ -1,0 +1,25 @@
+{
+  "name": "thelyv",
+  "version": "0.2.0",
+  "description": "A learning guide for any AI chat: goal-focused sessions with drift checks and branch chats, interview prep for the time you have left, notes saved to your own Notion or Google Drive, and quizzes on what you learned.",
+  "author": {
+    "name": "Avin",
+    "url": "https://github.com/avin045"
+  },
+  "repository": "https://github.com/avin045/thelyv",
+  "license": "MIT",
+  "keywords": [
+    "learning",
+    "notes",
+    "notion",
+    "google-drive",
+    "study"
+  ],
+  "skills": [
+    "./skills/thelyv",
+    "./skills/thelyv-goal",
+    "./skills/thelyv-interview-mode",
+    "./skills/thelyv-find",
+    "./skills/thelyv-save"
+  ]
+}
