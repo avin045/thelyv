@@ -41,10 +41,10 @@ npx skills add avin045/thelyv
 | `/thelyv` | Menu: pick what to do. `/thelyv <topic>` starts learning that topic straight away. |
 | `thelyv-goal` | Learn a topic with a goal. Choose goal-driven (Thelyv steers, with a Recommended next step) or user-driven (you steer). Drift gets numbered options: branch it, take a quick look in a private chat, or stay. |
 | `thelyv-interview-mode` | Interview prep in very simple English, shaped by your level and how much time is left. |
-| `thelyv-find <words>` | Find a past note, then quiz yourself on it, open it, or keep learning from it. |
-| `thelyv-save` | Save this chat as a note. "Save this to Thelyv" or "wrap up" works too, in any chat. |
+| `thelyv-find <words>` | Find a past note, see everything you've learned in an area, or get quizzed: recall questions plus one "explain it simply" question. |
+| `thelyv-save` | Save this chat as a note: only what you understood, plus the mistakes you fixed and what's still fuzzy. Notes are grouped by area with a short master note (PDF on request), and Thelyv can schedule quizzes spaced on the forgetting curve. "Save this to Thelyv" or "wrap up" works too, in any chat. |
 
 Every choice Thelyv offers is numbered, so you can answer with just "1".
 
 ## Status
-v0.2: dogfooding. See [AGENTS.md](AGENTS.md) for the full product and architecture notes.
+v0.3: dogfooding. See [AGENTS.md](AGENTS.md) for the full product and architecture notes.

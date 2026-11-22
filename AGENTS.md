@@ -62,7 +62,7 @@ Decisions below were settled in a grilling session on 2026-11-21. Treat them as 
 - `skills/thelyv/SKILL.md`: the menu.
 - `skills/thelyv-goal/`: `SKILL.md` (start, mode, teach, drift, branch, quick look, new-chat links), `resources.md` (2 videos and 2 articles), `new-chat-links.md`.
 - `skills/thelyv-interview-mode/SKILL.md` and `skills/thelyv-find/SKILL.md`.
-- `skills/thelyv-save/`: `SKILL.md`, `note-format.md`, and `connect.md` (connecting Notion or Drive, per app).
+- `skills/thelyv-save/`: `SKILL.md`, `note-format.md` (notes and master notes), `areas.md` (master notes, PDF, replacing files), `reminders.md` (forgetting-curve quiz reminders), `local-reminders.md` (desktop reminders for coding agents on the user's own computer, with the scripts), and `connect.md` (connecting Notion or Drive, per app).
 - `new-chat-links.md`: links that open a new chat with a message typed in. Rows may come from the app's docs or a hand test; the Checked column says which.
 - Check changes with `claude plugin validate .` (it checks only the Claude manifests).
 
@@ -122,6 +122,26 @@ Decisions below were settled in a grilling session on 2026-11-21. Treat them as 
 - **Finding:** `/thelyv:thelyv-find <topic>` searches the user's notes through the same connector. It shows the title, date, goal and takeaway, with a link, then offers 1. Quiz me on it (Recommended) 2. Open the note 3. Continue learning from it. The quiz uses the note's 3 recall questions.
 - **"Save this to Thelyv"** works in any chat too, not only Thelyv sessions.
 
+## Areas, smarter save and reminders (grilling round 2, 2026-11-22)
+- **Areas (umbrellas):** a feature of `thelyv-save` and `thelyv-find`, not a sixth skill. Menu option 5: "See what you've learned by area".
+  - On save, Thelyv suggests one area (existing first, or a new one, or none); branches default to the parent's area. Field `umbrella`; still `schema_version 1` (no users yet).
+  - New notes go to `Thelyv/<area-slug>/`, with the master note `_<area-slug>.md` beside them (Notion: `umbrella` select + a `<Area> (Thelyv master)` page). Old notes are never moved or edited.
+  - The master note is rebuilt from the notes' fields on every save: a "how it fits together" chain, one line per note (date, link, takeaway), mistakes fixed, still fuzzy, next quiz. Grouped by subheadings past ~15 notes.
+  - Markdown must read well in any viewer: no HTML, no wiki-links, no wide tables, normal relative links.
+  - **PDF:** offered when an area's master is first created, when opening an area, and on request. The format (`area_format`) sticks per area. One growing file per area, rebuilt so earlier pages stay the same. If a file can't be updated, write a dated copy, check it has everything, then move the old one to the trash (never a permanent delete) and say so. Without code, a combined `.md`.
+- **Smarter save:** keep what the user understood, drop the struggle. Understanding is found in three layers: their own words (kept verbatim in an "Understood:" line), then behaviour, then asking once ("Which do you feel solid on?"). New sections: "Mistakes fixed" (I thought X → actually Y, at most 3, feeding the recall questions, because corrected mistakes fade unless practised) and "Still fuzzy" (never recorded as understood).
+- **Quizzes:** one note (3 questions) or a whole area (up to 5), fuzzy items and fixed mistakes first, ending with a Feynman "explain it simply" question. Started by "quiz me on…" or a "Thelyv quiz: <title>" message.
+- **Reminders** (`skills/thelyv-save/reminders.md`): offered after each save, spaced on the forgetting curve: 1 day, 3 days, 1 week, 3 weeks, adapting after each quiz (missed → tomorrow). Two "no thanks" in a row stop the offer. Time question in 12-hour format with at most 3 options: the usual study time, the opposite part of the day, another time. Listed in thelyv-settings `## Reminders` for show and cancel.
+- **Where reminders are created (grilling round 3, 2026-11-22, replacing the Python script):** first way that works:
+  1. The app's own scheduler, only if its runs notify the user. Chat apps (Claude, ChatGPT, Gemini) use this. A cloud agent's scheduled runs only open a session nobody is told about, so they're skipped.
+  2. A calendar connector (reaches the phone too).
+  3. A shell script plus the OS's per-user scheduler, only for a coding agent on the computer in front of the user (`skills/thelyv-save/local-reminders.md`). PowerShell on Windows (Task Scheduler), one `sh` script on macOS (launchd) and Linux (systemd user timer). No Python (often missing or a store stub) and no cron (its notifications never show).
+  4. An `.ics` file for everything else (cloud or remote agents, unclear cases, or the user said no), saying why in one line.
+  5. A plain list of dates.
+  - **"Local" is decided silently, never asked.** Any cloud signal (`CLAUDE_CODE_REMOTE=true`, `CODESPACES`, `GITPOD_WORKSPACE_ID`, SSH, container, CI) means not local. Otherwise a positive desktop-session sign is still required, because many cloud agents set no signal. The marker table has a Checked column like `new-chat-links.md`. WSL uses the Windows side.
+  - The permission question names the computer and OS. The `## Reminders` line records `local: <hostname>`, so cancelling elsewhere says where the reminders live.
+- **New-chat link length:** handoff lines in order of importance, ending `[end]`; the linked message is at most ~1,500 characters, measured after encoding against the "Max length" column in `new-chat-links.md` (14,000 documented for Claude Desktop, 2,000 safe default elsewhere); otherwise paste only. A branch that arrives without `[end]` asks for the full message.
+
 ## Later (v2+)
 - **A very simple UI,** built only once v1 users ask "where can I see all this?". A hard-to-use UI won't get used.
 - **A small server and a single index** across all notes.
@@ -150,6 +170,9 @@ Decisions below were settled in a grilling session on 2026-11-21. Treat them as 
 - Do the Notion setup steps in `skills/thelyv-save/connect.md` work in Codex, OpenCode and Cursor?
 - Do the per-agent installs in the README work once the repo is public: Codex marketplace, `gemini extensions install`, `agy plugin install`, Cursor loading the root `plugin.json`?
 - Grok: does `grok plugin install avin045/thelyv` install all five skills? Can the Grok app load skills at all? Does `https://grok.com/?q=hello` open a chat with "hello" typed in, and does `#private` work with it?
+- Reminders: can a skill create ChatGPT Scheduled Tasks, Gemini scheduled actions or Claude scheduled tasks from a normal chat? Does the scheduled prompt reach the user's notes? Do their runs notify the user (ChatGPT Tasks, Gemini scheduled actions, Claude Desktop scheduled tasks)?
+- Desktop reminders (`local-reminders.md`): on Windows 11 the notification showed with notifications on, and the fallback window with them off (both checked by hand, 2026-11-22); the `sh` script's logic passed in Git Bash. Still to test: Task Scheduler firing at the set time, macOS launchd plus the `osascript` notification (Script Editor permission prompt), Linux systemd timer plus `notify-send`, and WSL through `powershell.exe`.
+- PDF: which PDF tools exist in each app's code sandbox (Claude, ChatGPT, Grok)?
 - Can Free plans use skills? The docs conflict.
 
 ## Validation
