@@ -22,3 +22,7 @@ Thumbs.db
 
 # Local build snapshots
 *.zip
+
+# Launch video build files (only docs/media/ is committed)
+brag-output/
+brag-output-*/

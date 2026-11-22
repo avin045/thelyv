@@ -95,14 +95,14 @@ When the user drifts, pause and name it in one or two lines: where the goal is, 
 
 1. Add a back-link line in this chat: `↳ quick look: <the question>`, and add the point to drift points as a quick look.
 2. Write a short message in a code block: the question plus one line of context. No Thelyv IDs.
-3. Tell the user to open a private chat and paste it, using this app's name for it: Claude "incognito chat" (the ghost icon on a new chat), ChatGPT "temporary chat", Gemini "temporary chat"; otherwise "a new chat". In a coding agent, say "a new session" (see **Opening a new chat**). Give a link only if [new-chat-links.md](new-chat-links.md) has a private-chat row for this app.
+3. Tell the user to open a private chat and paste it, using this app's name for it: Claude "incognito chat" (the ghost icon on a new chat), ChatGPT "temporary chat", Gemini "temporary chat", Grok "private chat"; otherwise "a new chat". In a coding agent, say "a new session" (see **Opening a new chat**). Give a link only if [new-chat-links.md](new-chat-links.md) has a private-chat row for this app.
 4. Return to the goal.
 
 ## Opening a new chat
 
-1. **Know the app, not just the model.** The same model runs in many apps: a Claude model can be in the Claude app, Claude Code, Cursor or OpenCode. Read your own instructions for the app's name.
-   - **Coding agent** (you can read and write files or run commands on the user's computer, e.g. Claude Code, Codex, OpenCode, Cursor, Gemini CLI): links don't apply. Say "Start a new session in your agent (for example a new terminal tab) and paste this as the first message." Stop here.
-   - **Chat app** (Claude, ChatGPT, Gemini…): continue. You usually can't tell whether the user is in a browser, a desktop app or a phone app, so don't guess.
+1. **Know the app, not just the model.** The same model runs in many apps: a Claude model can be in the Claude app, Claude Code, Cursor or OpenCode; Grok can be in the Grok app or Grok Build. Read your own instructions for the app's name.
+   - **Coding agent** (you can read and write files or run commands on the user's computer, e.g. Claude Code, Codex, OpenCode, Cursor, Gemini CLI, Grok Build): links don't apply. Say "Start a new session in your agent (for example a new terminal tab) and paste this as the first message." Stop here.
+   - **Chat app** (Claude, ChatGPT, Gemini, Grok…): continue. You usually can't tell whether the user is in a browser, a desktop app or a phone app, so don't guess.
    - **Can't tell:** skip links and give the paste instruction.
 2. **Settings first.** If a `thelyv-settings` note is reachable (Notion page, Drive file or local `~/Thelyv/thelyv-settings.md`, as in the save skill) and has a `new_chat_link` line for this app, use that format.
 3. **Otherwise use [new-chat-links.md](new-chat-links.md).** Give every row for this app, each labeled by surface ("Open in browser", "Open in Claude Desktop"). URL-encode the message with code when you can (Python: `urllib.parse.quote(message, safe="")`); hand-encoding long text goes wrong easily.

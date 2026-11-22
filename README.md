@@ -28,6 +28,8 @@ npx skills add avin045/thelyv
 | Cursor | Copy the five folders into `~/.cursor/skills/`. The repo is also a valid Cursor plugin (root `plugin.json`) once it's listed. |
 | Gemini CLI | `gemini extensions install https://github.com/avin045/thelyv`, or skills only: `gemini skills install https://github.com/avin045/thelyv.git --path skills` |
 | Antigravity CLI | `agy plugin install https://github.com/avin045/thelyv.git` |
+| Grok Build | `grok plugin install avin045/thelyv`, or `grok plugin marketplace add avin045/thelyv` then `grok plugin install thelyv` (or copy the five folders into `~/.grok/skills/`) |
+| Grok app (grok.com, phone) | If your Grok shows skills or plugins in Settings, add the five folders there. For saving, connect Notion or Google Drive at grok.com/connectors. |
 | Anything else that loads `SKILL.md` folders | Copy the five folders in `skills/` into its skills folder, as its docs describe. |
 
 **Calling the skills.** Most agents use the skill name as a command: `/thelyv`, `/thelyv-goal`, `/thelyv-find`. The Claude plugin puts the plugin name first (`/thelyv:thelyv-goal`), Codex uses `$thelyv-goal`, and OpenCode `@thelyv-goal`. Or just ask: "start a Thelyv session on React hooks".

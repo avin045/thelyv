@@ -30,3 +30,4 @@ If this app can't load the other skill on its own, tell the user how to call it 
 - **Claude plugin:** the plugin name comes first, `/thelyv:thelyv-goal`.
 - **Codex:** `$thelyv-goal`.
 - **OpenCode:** `@thelyv-goal`, or just ask for it by name.
+- **Grok app:** ask for it by name ("start a Thelyv goal session") if no command shows up. Grok Build uses `/thelyv-goal`.

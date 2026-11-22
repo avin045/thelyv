@@ -51,13 +51,14 @@ Decisions below were settled in a grilling session on 2026-11-21. Treat them as 
   - `plugin.json` at the root (open Agent Plugins spec, agent-plugins.org): Codex, Cursor, Antigravity CLI and Copilot CLI. Skills are found in `skills/` without listing them.
   - `.codex-plugin/plugin.json` + `.agents/plugins/marketplace.json`: Codex's plugin format and marketplace.
   - `gemini-extension.json`: Gemini CLI extension (replaced by Antigravity CLI on 2026-06-18, still in use). It sets no context file, so these project notes never load into users' sessions.
+  - `.grok-plugin/plugin.json` + `marketplace.json` (added 2026-11-22, same layout as last30days): Grok Build installs with `grok plugin install avin045/thelyv`. Per xAI's docs, Grok Build also reads Claude Code plugins and marketplaces, loads skills from `~/.grok/skills/`, `~/.agents/skills/` and plugin `skills/` folders, and shows them as `/<skill-name>`. The Grok app has official Notion and Google Drive connectors at grok.com/connectors (Drive can create files); whether it loads skills is unknown. `grok.com/?q=` is in `new-chat-links.md` as user-reported; Grok's private chat is the quick-look target. A listing in xAI's official catalog is a later PR to `xai-org/plugin-marketplace`, pinned to a full commit SHA.
   - OpenCode has no plugin format for skills: users copy the folders or use `npx skills add avin045/thelyv`, which installs into any agent's skills folder.
   - Keep `version` the same in every manifest.
 - **Plain-skill commands** are the skill names (`/thelyv-goal`, `$thelyv-goal` in Codex); the prefix keeps them from clashing with other installed skills.
 
 ## Repo layout
 - `AGENTS.md`: these project notes, read by most coding agents. `CLAUDE.md` only imports it (`@AGENTS.md`); edit `AGENTS.md`.
-- Manifests: `.claude-plugin/`, `plugin.json`, `.codex-plugin/`, `.agents/plugins/marketplace.json`, `gemini-extension.json` (see "Packaging per agent").
+- Manifests: `.claude-plugin/`, `plugin.json`, `.codex-plugin/`, `.grok-plugin/`, `.agents/plugins/marketplace.json`, `gemini-extension.json` (see "Packaging per agent").
 - `skills/thelyv/SKILL.md`: the menu.
 - `skills/thelyv-goal/`: `SKILL.md` (start, mode, teach, drift, branch, quick look, new-chat links), `resources.md` (2 videos and 2 articles), `new-chat-links.md`.
 - `skills/thelyv-interview-mode/SKILL.md` and `skills/thelyv-find/SKILL.md`.
@@ -148,6 +149,7 @@ Decisions below were settled in a grilling session on 2026-11-21. Treat them as 
 - Does `npx skills add avin045/thelyv` install all five skills once the repo is public?
 - Do the Notion setup steps in `skills/thelyv-save/connect.md` work in Codex, OpenCode and Cursor?
 - Do the per-agent installs in the README work once the repo is public: Codex marketplace, `gemini extensions install`, `agy plugin install`, Cursor loading the root `plugin.json`?
+- Grok: does `grok plugin install avin045/thelyv` install all five skills? Can the Grok app load skills at all? Does `https://grok.com/?q=hello` open a chat with "hello" typed in, and does `#private` work with it?
 - Can Free plans use skills? The docs conflict.
 
 ## Validation

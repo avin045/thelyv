@@ -12,7 +12,7 @@ Save only when the user asks. Nothing is saved automatically.
 **What you can do here.** Check once, before step 1:
 - **Notion tools:** you can search and create Notion pages.
 - **Drive tools:** you can search and create Google Drive files.
-- **Local files:** you can read and write files on the user's own computer (coding agents such as Claude Code, Codex, OpenCode or Cursor). A sandbox that only produces downloads doesn't count.
+- **Local files:** you can read and write files on the user's own computer (coding agents such as Claude Code, Codex, OpenCode, Cursor or Grok Build). A sandbox that only produces downloads doesn't count.
 
 ## 1. Find the destination
 

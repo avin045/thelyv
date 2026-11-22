@@ -6,7 +6,7 @@ After connecting, most apps need a new chat or session before the tools appear. 
 
 ## Which app are you in?
 
-You know which **model** you are, but the **app** can differ: Claude models also run inside Claude Code, Cursor, OpenCode and others. Read your own instructions for the app's name. If you have tools that read and write files on the user's computer or run shell commands there, you're in a coding agent, not a chat app. If you still can't tell, ask: "Which app are you using? 1. Claude (web, desktop or phone) 2. ChatGPT 3. Claude Code 4. Another app".
+You know which **model** you are, but the **app** can differ: Claude models also run inside Claude Code, Cursor, OpenCode and others, and Grok runs in the Grok app and in Grok Build. Read your own instructions for the app's name. If you have tools that read and write files on the user's computer or run shell commands there, you're in a coding agent, not a chat app. If you still can't tell, ask: "Which app are you using? 1. Claude (web, desktop or phone) 2. ChatGPT 3. Grok 4. A coding agent (Claude Code, Codex, Grok Build…) 5. Another app".
 
 ## Notion (recommended)
 
@@ -16,6 +16,7 @@ Notion runs one official server for all apps: `https://mcp.notion.com/mcp`. The 
 |---|---|
 | Claude (web, desktop, phone) | Settings > Connectors, find **Notion**, click Connect, and sign in. In a chat, make sure Notion is switched on in the tools menu. |
 | ChatGPT | Settings > Apps (connectors), connect **Notion**. Saving notes needs a plan where apps can write (Business, Enterprise or Edu); on other plans ChatGPT can read Notion but not save to it, so use a `.md` file instead. |
+| Grok (web, phone) | Go to grok.com/connectors, click **New Connector**, pick **Notion**, and sign in. Available to all Grok users; on Grok Business or Enterprise an admin must turn it on first. |
 | Claude Code | Run `claude mcp add --transport http --scope user notion https://mcp.notion.com/mcp`, then in Claude Code type `/mcp`, pick notion and sign in. |
 | Codex | Run `codex mcp add notion --url https://mcp.notion.com/mcp`, then `codex mcp login notion`. |
 | OpenCode | In `opencode.json`, under `"mcp"`, add `"notion": { "type": "remote", "url": "https://mcp.notion.com/mcp" }`, then run `opencode mcp auth notion`. |
@@ -27,6 +28,7 @@ Notion runs one official server for all apps: `https://mcp.notion.com/mcp`. The 
 | App | Steps |
 |---|---|
 | Claude (web, desktop, phone) | Settings > Connectors, find **Google Drive**, click Connect, and sign in. |
+| Grok (web, phone) | Go to grok.com/connectors, click **New Connector**, pick **Google Drive**, and sign in. It can create files and folders. |
 | ChatGPT | ChatGPT's Google Drive app can search and read files but not save new ones, so use Notion or a `.md` file instead. |
 | Coding agents and other apps | Google's official Drive MCP server (`https://drivemcp.googleapis.com/mcp/v1`) needs a Google Cloud project with its own OAuth client, which takes 15+ minutes to set up. Recommend Notion, or the local Thelyv folder, instead. If they still want Drive, point them to Google's guide: "Configure the Drive MCP server" on developers.google.com. |
 

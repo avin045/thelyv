@@ -16,7 +16,7 @@ Every Thelyv note follows this format exactly, whatever the destination. Later T
 | `topic` | text | One or two lowercase words for the broad area, e.g. `tls`, `encoding`, `react` |
 | `started_at` | datetime | Session start, ISO 8601 UTC, e.g. `2026-11-21T14:32:00Z` |
 | `saved_at` | datetime | Save time, ISO 8601 UTC |
-| `provider` | text | The app this session runs in (not the model), lowercase with hyphens: `claude`, `claude-code`, `chatgpt`, `codex`, `gemini`, `gemini-cli`, `copilot`, `cursor`, `opencode`, or the app's own name. `unknown` if you can't tell. |
+| `provider` | text | The app this session runs in (not the model), lowercase with hyphens: `claude`, `claude-code`, `chatgpt`, `codex`, `gemini`, `gemini-cli`, `copilot`, `cursor`, `opencode`, `grok`, `grok-build`, or the app's own name. `unknown` if you can't tell. |
 | `drift_points` | list of text | Short phrases, one per drift; empty list if none |
 | `deep_dive` | true/false | `true` if the user chose to stay on any drift |
 | `chat_url` | text | The chat link if the user gave one; otherwise empty |
