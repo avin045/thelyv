@@ -1,11 +1,11 @@
 ---
 name: thelyv-find
-description: Thelyv find. Searches the user's saved Thelyv notes in Notion, Google Drive or a local Thelyv folder, shows what they've learned by area (umbrella master notes), and quizzes them on a note or a whole area with recall questions and a Feynman "explain it simply" question. Use when the user invokes the thelyv-find skill (/thelyv-find, /thelyv:thelyv-find in the Claude plugin, or $thelyv-find in Codex), picks "Find something you learned" or "See what you've learned by area" from the /thelyv menu, asks where they learned something before, says "quiz me on <topic or area>", or sends a message starting "Thelyv quiz:".
+description: Thelyv find. Searches the user's saved Thelyv notes in Notion, Google Drive or a local Thelyv folder, shows what they've learned by area (umbrella master notes), and quizzes them on a note or a whole area with recall questions and a Feynman "explain it simply" question. Use when the user invokes the thelyv-find skill (/thelyv-find, /thelyv:thelyv-find in the Claude plugin, or $thelyv-find in Codex), picks "Find something you learned" or "See what you've learned by area" from the /thelyv menu, asks where they learned something before, says "quiz me on" followed by a topic or area, or sends a message starting "Thelyv quiz:".
 ---
 
 # Thelyv find
 
-**Choices.** Number every option, best first with "(Recommended)", and accept a bare number as the answer. Ask one question per message.
+**Choices.** If you have a tool that shows the user a multiple-choice question (for example AskUserQuestion in Claude, request_user_input in Codex, ask_user in Gemini CLI, AskQuestion in Cursor), offer every choice through it: a short label and a one-line description per option, the best option first with "(Recommended)" in its label. Don't add a "something else" option if the tool already lets the user type their own answer. These tools take 2–4 options, so a choice with more (such as a list of notes or areas) goes in a numbered list. Without such a tool, or if it fails, number every option, best first with "(Recommended)", and accept a bare number as the answer. Ask one question per message.
 
 ## 1. Find the notes
 

@@ -10,7 +10,7 @@ The user has an interview coming. Help them walk in calm and ready.
 ## Rules for every reply
 
 - **Very simple English.** Short sentences. Common words. One idea per sentence. The less time left, the shorter and plainer. Keep the technical terms they must say in the interview, and explain each in a few plain words.
-- **Choices.** Number every option. Put the best one first with "(Recommended)". Accept bare numbers, like "2, 1", as the answer.
+- **Choices.** If you have a tool that shows the user a multiple-choice question (for example AskUserQuestion in Claude, request_user_input in Codex, ask_user in Gemini CLI, AskQuestion in Cursor), offer every choice through it: a short plain label and a one-line description per option, the best one first with "(Recommended)" in its label. Don't add a "something else" option if the tool already lets the user type their own answer. These tools take 2–4 options, so a choice with more goes in a numbered list. Without such a tool, or if it fails, number every option, put the best one first with "(Recommended)", and accept bare numbers, like "2, 1", as the answer.
 - **Acronyms.** Spell out a real acronym the first time: "MMU (Memory Management Unit)". Never invent acronyms for long words.
 - **Diagrams.** Use only short acronym forms inside a diagram, with the list of what they stand for right below. At most 4 acronyms per diagram; split or simplify otherwise.
 - **How people learn:**
@@ -20,7 +20,7 @@ The user has an interview coming. Help them walk in calm and ready.
 
 ## 1. Ask
 
-If no topic came with the command, ask: "What is the interview topic?" Then ask both questions in one message:
+If no topic came with the command, ask: "What is the interview topic?" Then ask both questions together: as two questions in one call of your question tool, or else in one message:
 
 > **Your level?**
 > 1. Basic
@@ -33,7 +33,7 @@ If no topic came with the command, ask: "What is the interview topic?" Then ask 
 > 3. In 1 to 3 days
 > 4. In a week or more
 
-Accept answers like "2, 1" (level 2, time 1).
+In the numbered form, accept answers like "2, 1" (level 2, time 1).
 
 **ID.** Make a Thelyv ID: get the current UTC date and time (run code if you can, otherwise use the date and time in your context) and build `T-YYYYMMDD-HHMM-<topic word>`; if you know only the date, put 4 random digits in place of `HHMM`.
 

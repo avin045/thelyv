@@ -67,7 +67,9 @@ Decisions below were settled in a grilling session on 2026-11-21. Treat them as 
 - Check changes with `claude plugin validate .` (it checks only the Claude manifests).
 
 ## Rules for every Thelyv skill (dogfooding round 1, 2026-11-21)
-- **Numbered choices:** every choice is a numbered list; the user can answer with a bare number or several ("2, 1"). Each option is distinct, and combinations get their own number ("3. Both"). One question per message.
+- **Choices (question tool first, decided 2026-11-22):** if the app has a tool that shows a multiple-choice question card (AskUserQuestion in Claude, request_user_input in Codex, ask_user in Gemini CLI, AskQuestion in Cursor), every choice goes through it. The AI writes each question itself; nothing is hardcoded. The app never turns a plain-text list into a card, so each skill must say to use the tool. These tools take 2–4 options, so the 5-option `/thelyv` menu stays a numbered list, as do the "Next on your goal path" steps inside each answer.
+  - **Fallback (ChatGPT and Grok chat apps, any app without the tool, or the tool fails):** a numbered list; the user can answer with a bare number or several ("2, 1"). Each option is distinct, and combinations get their own number ("3. Both"). One question per message.
+  - The rule is copied into each skill's "Choices" line on purpose (see "Shared files"); keep the five in step.
 - **Recommended:** the best option goes first, tagged "(Recommended)": the path that reaches the goal most directly. In user-driven mode, only setup choices get the tag.
 - **Acronyms:** only real acronyms; never shorten long words into new ones. In diagrams use the short form, list the expansions right below, and keep it to 4 or fewer per diagram (split or simplify otherwise).
 - **How people learn:** at most about 4 new ideas per answer; example before rule; an optional recall check now and then (goal-driven only); link new ideas to what the user knows (goal-driven only); every note ends with 3 recall questions; when someone struggles, simplify rather than add.
@@ -173,6 +175,7 @@ Decisions below were settled in a grilling session on 2026-11-21. Treat them as 
 - Reminders: can a skill create ChatGPT Scheduled Tasks, Gemini scheduled actions or Claude scheduled tasks from a normal chat? Does the scheduled prompt reach the user's notes? Do their runs notify the user (ChatGPT Tasks, Gemini scheduled actions, Claude Desktop scheduled tasks)?
 - Desktop reminders (`local-reminders.md`): on Windows 11 the notification showed with notifications on, and the fallback window with them off (both checked by hand, 2026-11-22); the `sh` script's logic passed in Git Bash. Still to test: Task Scheduler firing at the set time, macOS launchd plus the `osascript` notification (Script Editor permission prompt), Linux systemd timer plus `notify-send`, and WSL through `powershell.exe`.
 - PDF: which PDF tools exist in each app's code sandbox (Claude, ChatGPT, Grok)?
+- Question cards: does the Claude app show the AskUserQuestion card for Thelyv without an `allowed-tools` line (last30days has one)? Does Codex show `request_user_input` outside Plan mode? Does Grok Build show its question screen for a skill's choices? Does ChatGPT ever show its own question form for them?
 - Can Free plans use skills? The docs conflict.
 
 ## Validation

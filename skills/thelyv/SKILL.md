@@ -18,7 +18,7 @@ Thelyv is a learning guide: know what you learned, not just what you saved.
 > 4. Save this chat to Thelyv
 > 5. See what you've learned by area
 
-Accept a bare number. Then load and follow the matching Thelyv skill:
+The menu has 5 options, more than a multiple-choice question tool takes (2–4), so always show it as this numbered list. Accept a bare number. Then load and follow the matching Thelyv skill:
 
 | Pick | Skill |
 |---|---|
