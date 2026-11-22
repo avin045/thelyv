@@ -53,10 +53,11 @@ Decisions below were settled in a grilling session on 2026-11-21. Treat them as 
   - `gemini-extension.json`: Gemini CLI extension (replaced by Antigravity CLI on 2026-06-18, still in use). It sets no context file, so these project notes never load into users' sessions.
   - `.grok-plugin/plugin.json` + `marketplace.json` (added 2026-11-22, same layout as last30days): Grok Build installs with `grok plugin install avin045/thelyv`. Per xAI's docs, Grok Build also reads Claude Code plugins and marketplaces, loads skills from `~/.grok/skills/`, `~/.agents/skills/` and plugin `skills/` folders, and shows them as `/<skill-name>`. The Grok app has official Notion and Google Drive connectors at grok.com/connectors (Drive can create files); whether it loads skills is unknown. `grok.com/?q=` is in `new-chat-links.md` as user-reported; Grok's private chat is the quick-look target. A listing in xAI's official catalog is a later PR to `xai-org/plugin-marketplace`, pinned to a full commit SHA.
   - OpenCode has no plugin format for skills: users copy the folders or use `npx skills add avin045/thelyv`, which installs into any agent's skills folder.
-  - Keep `version` the same in every manifest.
+  - Keep `version` the same in every manifest. Never bump it by hand: release-please does it (see "Releases").
 - **Plain-skill commands** are the skill names (`/thelyv-goal`, `$thelyv-goal` in Codex); the prefix keeps them from clashing with other installed skills.
 
 ## Repo layout
+- `.github/workflows/`: `check.yml` (validate + version check) and `release-please.yml` (releases). `scripts/check-versions.mjs` is the version check. `CHANGELOG.md` is written by release-please; don't edit it by hand.
 - `AGENTS.md`: these project notes, read by most coding agents. `CLAUDE.md` only imports it (`@AGENTS.md`); edit `AGENTS.md`.
 - Manifests: `.claude-plugin/`, `plugin.json`, `.codex-plugin/`, `.grok-plugin/`, `.agents/plugins/marketplace.json`, `gemini-extension.json` (see "Packaging per agent").
 - `skills/thelyv/SKILL.md`: the menu.
@@ -64,7 +65,19 @@ Decisions below were settled in a grilling session on 2026-11-21. Treat them as 
 - `skills/thelyv-interview-mode/SKILL.md` and `skills/thelyv-find/SKILL.md`.
 - `skills/thelyv-save/`: `SKILL.md`, `note-format.md` (notes and master notes), `areas.md` (master notes, PDF, replacing files), `reminders.md` (forgetting-curve quiz reminders), `local-reminders.md` (desktop reminders for coding agents on the user's own computer, with the scripts), and `connect.md` (connecting Notion or Drive, per app).
 - `new-chat-links.md`: links that open a new chat with a message typed in. Rows may come from the app's docs or a hand test; the Checked column says which.
-- Check changes with `claude plugin validate .` (it checks only the Claude manifests).
+- Check changes with `claude plugin validate .` (it checks only the Claude manifests) and `node scripts/check-versions.mjs` (same version everywhere). The `check` workflow in `.github/workflows/` runs both on every push and pull request.
+
+## Releases (decided 2026-11-22)
+- **release-please** (`.github/workflows/release-please.yml`, `release-please-config.json`, `.release-please-manifest.json`). On every push to `main` it keeps one release PR open that bumps the version in all six manifests and adds the changes to `CHANGELOG.md`. Merging that PR tags `vX.Y.Z` and publishes a GitHub Release with the notes.
+- **Commit subjects drive it** (Conventional Commits). The body can keep the usual bullets.
+  - `feat:` a new or changed skill behaviour → next minor (0.3.0 → 0.4.0), listed under Features.
+  - `fix:` a skill doing the wrong thing → next patch (0.3.0 → 0.3.1), listed under Fixes.
+  - `docs:` README or install notes → listed under Documentation, no version bump on its own.
+  - `ci:`, `chore:`, `refactor:` → not listed. AGENTS.md-only changes are `chore:`.
+  - Before 1.0, a breaking change (`feat!:`) bumps the minor, not the major.
+- A merge or squash into `main` needs a conventional subject too, or its changes are left out of the notes.
+- One-time repo setting: Settings → Actions → General → "Allow GitHub Actions to create and approve pull requests". Release PRs made with the default token don't trigger the `check` workflow; run the checks locally before merging one.
+- The `v0.2.0` and `v0.3.0` tags predate this and have no GitHub Release; `bootstrap-sha` starts the first changelog after v0.3.0.
 
 ## Rules for every Thelyv skill (dogfooding round 1, 2026-11-21)
 - **Choices (question tool first, decided 2026-11-22):** if the app has a tool that shows a multiple-choice question card (AskUserQuestion in Claude, request_user_input in Codex, ask_user in Gemini CLI, AskQuestion in Cursor), every choice goes through it. The AI writes each question itself; nothing is hardcoded. The app never turns a plain-text list into a card, so each skill must say to use the tool. These tools take 2–4 options, so the 5-option `/thelyv` menu stays a numbered list, as do the "Next on your goal path" steps inside each answer.

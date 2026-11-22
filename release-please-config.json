@@ -1,0 +1,28 @@
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "bootstrap-sha": "ce4b1013fe8ebc67fd23dfa58e9d7eb86cf23b80",
+  "release-type": "simple",
+  "include-component-in-tag": false,
+  "bump-minor-pre-major": true,
+  "changelog-sections": [
+    { "type": "feat", "section": "Features" },
+    { "type": "fix", "section": "Fixes" },
+    { "type": "docs", "section": "Documentation" },
+    { "type": "revert", "section": "Reverts" },
+    { "type": "ci", "section": "CI", "hidden": true },
+    { "type": "chore", "section": "Chores", "hidden": true },
+    { "type": "refactor", "section": "Refactors", "hidden": true }
+  ],
+  "packages": {
+    ".": {
+      "extra-files": [
+        { "type": "json", "path": ".claude-plugin/plugin.json", "jsonpath": "$.version" },
+        { "type": "json", "path": ".codex-plugin/plugin.json", "jsonpath": "$.version" },
+        { "type": "json", "path": ".grok-plugin/plugin.json", "jsonpath": "$.version" },
+        { "type": "json", "path": ".grok-plugin/marketplace.json", "jsonpath": "$.plugins[0].version" },
+        { "type": "json", "path": "plugin.json", "jsonpath": "$.version" },
+        { "type": "json", "path": "gemini-extension.json", "jsonpath": "$.version" }
+      ]
+    }
+  }
+}
