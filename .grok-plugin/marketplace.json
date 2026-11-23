@@ -9,7 +9,7 @@
     {
       "name": "thelyv",
       "description": "A learning guide for any AI chat: goal-focused sessions with drift checks and branch chats, interview prep for the time you have left, notes saved to your own Notion or Google Drive, and quizzes on what you learned.",
-      "version": "0.5.1",
+      "version": "0.5.2",
       "category": "productivity",
       "source": {
         "source": "url",
