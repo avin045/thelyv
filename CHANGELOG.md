@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.5.2](https://github.com/avin045/thelyv/compare/v0.5.1...v0.5.2) (2026-11-23)
+
+
+### Fixes
+
+* question tool covers every choice, more tool names ([da656eb](https://github.com/avin045/thelyv/commit/da656eb2b2eff5fc63af0ba2fc6514526654b308))
+
+
+### Documentation
+
+* README says choices show as a question card where the app has one ([caa28c3](https://github.com/avin045/thelyv/commit/caa28c3d72560829d4e98cac4207415f038c285e))
+
 ## [0.5.1](https://github.com/avin045/thelyv/compare/v0.5.0...v0.5.1) (2026-11-23)
 
 
