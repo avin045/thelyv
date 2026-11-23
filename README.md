@@ -44,7 +44,7 @@ npx skills add avin045/thelyv
 | `thelyv-find <words>` | Find a past note, see everything you've learned in an area, or get quizzed: recall questions plus one "explain it simply" question. |
 | `thelyv-save` | Save this chat as a note: only what you understood, plus the mistakes you fixed and what's still fuzzy. Notes are grouped by area with a short master note (PDF on request), and Thelyv can schedule quizzes spaced on the forgetting curve. "Save this to Thelyv" or "wrap up" works too, in any chat. |
 
-Every choice Thelyv offers is numbered, so you can answer with just "1".
+Thelyv offers every choice as a question card where your app has one (Claude, Codex, Gemini CLI, Cursor and others). Elsewhere, choices are numbered, so you can answer with just "1".
 
 ## Status
 v0.5.1: dogfooding. See [AGENTS.md](AGENTS.md) for the full product and architecture notes.
