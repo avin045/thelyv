@@ -118,12 +118,17 @@ Decisions below were settled in a grilling session on 2026-11-21. Treat them as 
 - Asks the topic, then level (1. Basic 2. Intermediate 3. Advanced) and "When is your interview?" (1. In less than 30 minutes 2. In a few hours 3. In 1 to 3 days 4. In a week or more) in one message, answered like "2, 1".
 - **Very simple English** throughout, plainer the less time is left, so it helps under pressure.
 - **Likely questions are Thelyv's job,** never the user's: under 30 minutes it answers from its own knowledge, searching only when an answer needs a current or exact fact. With more time it searches for real interview questions without asking and ranks them by how often they come up.
+- **Readable at a glance (decided 2026-11-23, replacing one long pack per reply):** dogfooding showed a wall of text ending in two questions. Research is in `.scratch/interview-mode-readability/research.md`.
+  - Every reply: the answer first, at most 4 new ideas, sentences of about 15 words, then exactly one question and stop.
+  - Chat can't fold text, so replies stay short and the user's reply opens the next part. Formatting is a toolbox: bold for 1–3 key items, dividers between parts, `>` quotes for spoken answers, tables only for comparisons and the plan, code blocks only for code or text to copy.
+  - The long version lives in the saved note, which holds the full prep including parts not reached in chat.
 - **By time left:**
-  - Under 30 minutes: 5 must-know points, 3 likely questions with 30-second spoken answers, a line for blanking, reassurance. Nothing new or deep.
-  - A few hours: one-page summary, about 8 questions, try-first practice.
-  - 1 to 3 days: full notes, a day-by-day plan with review on separate days, mock round.
+  - Under 30 minutes: one reply, no menu. Bottom line, 5 must-know points, 3 likely questions with 30-second spoken answers (say each aloud once), a line for blanking, a line that reframes nerves. Nothing new or deep, and no quiz pushed (rereading does as well minutes before).
+  - A few hours: first the core of the summary (at most 4 key ideas), then about 8 questions one per reply, try first, then feedback and a better answer.
+  - 1 to 3 days: a map (at most 7 sections, each with a one-sentence takeaway) plus a day-plan table, then one section per reply; review days are try-first practice with harder follow-ups.
   - A week or more: the same spread over the week, with harder follow-ups.
-- Offers a mock round, then "1. Save this prep to Thelyv (Recommended) 2. Not now". Saving is still only on request.
+- **By level:** Basic gets key terms and worked examples first, with Thelyv picking the order; Intermediate and Advanced get shorter answers and pick sections from the map. Time left overrides level for length.
+- **End of the prep:** one question, "1. Ask me the questions now (Recommended) 2. Save this prep to Thelyv 3. I'm done"; after a mock round, save is offered once more. Saving is still only on request.
 
 ## Saving and finding
 - **Save only when the user asks** ("wrap up", "save"). Nothing is saved automatically. A session that's never saved leaves no trace; that's accepted.
