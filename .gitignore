@@ -26,3 +26,6 @@ Thumbs.db
 # Launch video build files (only docs/media/ is committed)
 brag-output/
 brag-output-*/
+
+# Local issue tracker and research notes (never committed)
+.scratch/
