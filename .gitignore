@@ -29,3 +29,6 @@ brag-output-*/
 
 # Local issue tracker and research notes (never committed)
 .scratch/
+
+# Local planning notes (never committed)
+tasks/
