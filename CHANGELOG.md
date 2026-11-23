@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.1](https://github.com/avin045/thelyv/compare/v0.5.0...v0.5.1) (2026-11-23)
+
+
+### Fixes
+
+* interview mode example and checklist follow its own rules ([c3ad5ac](https://github.com/avin045/thelyv/commit/c3ad5aca6743fac6b6acb815d7508f1f36155d95))
+
 ## [0.5.0](https://github.com/avin045/thelyv/compare/v0.4.0...v0.5.0) (2026-11-23)
 
 
