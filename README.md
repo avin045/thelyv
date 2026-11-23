@@ -47,4 +47,4 @@ npx skills add avin045/thelyv
 Every choice Thelyv offers is numbered, so you can answer with just "1".
 
 ## Status
-v0.3: dogfooding. See [AGENTS.md](AGENTS.md) for the full product and architecture notes.
+v0.5.1: dogfooding. See [AGENTS.md](AGENTS.md) for the full product and architecture notes.
