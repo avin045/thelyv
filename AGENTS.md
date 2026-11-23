@@ -68,7 +68,7 @@ Decisions below were settled in a grilling session on 2026-11-21. Treat them as 
 - Check changes with `claude plugin validate .` (it checks only the Claude manifests) and `node scripts/check-versions.mjs` (same version everywhere). The `check` workflow in `.github/workflows/` runs both on every push and pull request.
 
 ## Releases (decided 2026-11-22)
-- **release-please** (`.github/workflows/release-please.yml`, `release-please-config.json`, `.release-please-manifest.json`). On every push to `main` it keeps one release PR open that bumps the version in all six manifests and adds the changes to `CHANGELOG.md`. Merging that PR tags `vX.Y.Z` and publishes a GitHub Release with the notes.
+- **release-please** (`.github/workflows/release-please.yml`, `release-please-config.json`, `.release-please-manifest.json`). On every push to `main` it keeps one release PR open that bumps the version in all six manifests and the README status line (marked `x-release-please-version`), and adds the changes to `CHANGELOG.md`. Merging that PR tags `vX.Y.Z` and publishes a GitHub Release with the notes.
 - **Commit subjects drive it** (Conventional Commits). The body can keep the usual bullets.
   - `feat:` a new or changed skill behaviour → next minor (0.3.0 → 0.4.0), listed under Features.
   - `fix:` a skill doing the wrong thing → next patch (0.3.0 → 0.3.1), listed under Fixes.

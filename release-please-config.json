@@ -21,7 +21,8 @@
         { "type": "json", "path": ".grok-plugin/plugin.json", "jsonpath": "$.version" },
         { "type": "json", "path": ".grok-plugin/marketplace.json", "jsonpath": "$.plugins[0].version" },
         { "type": "json", "path": "plugin.json", "jsonpath": "$.version" },
-        { "type": "json", "path": "gemini-extension.json", "jsonpath": "$.version" }
+        { "type": "json", "path": "gemini-extension.json", "jsonpath": "$.version" },
+        { "type": "generic", "path": "README.md" }
       ]
     }
   }
