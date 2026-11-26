@@ -24,17 +24,25 @@ Decisions below were settled in a grilling session on 2026-11-21. Treat them as 
   - Branches show how you got there.
   - This is the answer to "my AI already has chat search".
 
-## v1 shape: five skills, no server
-- **Delivery:** five portable skills under `skills/`, packaged for Claude as the `thelyv` plugin (never `thelyv-plugin`) from this repo (`github.com/avin045/thelyv`), which is also the plugin's marketplace.
+## v1 shape: six skills, no server
+- **Delivery:** six portable skills under `skills/`, packaged for Claude as the `thelyv` plugin (never `thelyv-plugin`) from this repo (`github.com/avin045/thelyv`), which is also the plugin's marketplace.
   - `thelyv`: a menu (`/thelyv`). With a topic it skips the menu and starts `thelyv-goal`.
-  - `thelyv-goal`: the learning session (`/thelyv:thelyv-goal`).
+  - `thelyv-goal`: the learning session for a topic the user is new to (`/thelyv:thelyv-goal`).
+  - `thelyv-fill-pieces`: clear up a topic the user partly knows (`/thelyv:thelyv-fill-pieces`).
   - `thelyv-interview-mode`: interview prep (`/thelyv:thelyv-interview-mode`).
   - `thelyv-find`: find and quiz past notes (`/thelyv:thelyv-find`).
   - `thelyv-save`: save a note (`/thelyv:thelyv-save`, or "save this to Thelyv" in any chat).
   - **Names carry the `thelyv-` prefix (decided 2026-11-21, replacing short names):** installed as plain skills in other agents, bare names like `find` or `save` would clash with other skills, or overwrite their folders. The cost is the longer `/thelyv:thelyv-find` inside the Claude plugin. Each description also starts with "Thelyv".
   - Other tools that load `SKILL.md` folders use the same folders as they are.
   - Move the repo to an org once there are users; GitHub redirects the old address.
-- **Shared files (decided 2026-11-21):** other tools can't reliably read another skill's folder. `thelyv-save` owns `note-format.md` and the settings note; the others hand over to it by name and show the note to copy if it isn't loaded. The short "how people learn" rules are copied into `thelyv-goal` and `thelyv-interview-mode` on purpose.
+- **Sixth skill (decided 2026-11-26):** `thelyv-fill-pieces` is for a topic the user partly knows, often a long answer they only half followed. It reopens "five skills" on purpose.
+  - **Why:** `thelyv-goal` assumes a beginner. A "what do you know?" step inside it was rejected as slow and complicated; a separate skill keeps goal simple.
+  - **Opening:** the first reply is Right / Off / Missing, a direct answer with no question first. "I don't know anything" points to `thelyv-goal`.
+  - **Explanation shape:** the exact lines first (command, config or code), then 2–3 plain sentences saying why, then the whole flow (a diagram, or the full code).
+  - **Web search always,** with the sources cited. **No quizzes** here; quizzing stays in `thelyv-find`.
+  - **Control copied from `thelyv-goal` on purpose** (see "Shared files"): modes, "Pieces still unclear", drift, branch and quick look.
+  - **Branches are read by `thelyv-goal`;** the handoff message is the same, and the new-chat links stay in its folder.
+- **Shared files (decided 2026-11-21):** other tools can't reliably read another skill's folder. `thelyv-save` owns `note-format.md` and the settings note; the others hand over to it by name and show the note to copy if it isn't loaded. The short "how people learn" rules are copied into `thelyv-goal`, `thelyv-interview-mode` and `thelyv-fill-pieces` on purpose.
 - **No Thelyv server, no app and no sign-in in v1.** Notes are written through whatever Notion or Google Drive tools the user's AI has.
 - **Missing capabilities:**
   - **Can't create files:** the note is shown to copy.
@@ -62,6 +70,7 @@ Decisions below were settled in a grilling session on 2026-11-21. Treat them as 
 - Manifests: `.claude-plugin/`, `plugin.json`, `.codex-plugin/`, `.grok-plugin/`, `.agents/plugins/marketplace.json`, `gemini-extension.json` (see "Packaging per agent").
 - `skills/thelyv/SKILL.md`: the menu.
 - `skills/thelyv-goal/`: `SKILL.md` (start, mode, teach, drift, branch, quick look, new-chat links), `resources.md` (2 videos and 2 articles), `new-chat-links.md`.
+- `skills/thelyv-fill-pieces/SKILL.md`: partly-known topics (Right / Off / Missing, the explanation shape, pieces list, drift, branch).
 - `skills/thelyv-interview-mode/SKILL.md` and `skills/thelyv-find/SKILL.md`.
 - `skills/thelyv-save/`: `SKILL.md`, `note-format.md` (notes and master notes), `areas.md` (master notes, PDF, replacing files), `reminders.md` (forgetting-curve quiz reminders), `local-reminders.md` (desktop reminders for coding agents on the user's own computer, with the scripts), and `connect.md` (connecting Notion or Drive, per app).
 - `new-chat-links.md`: links that open a new chat with a message typed in. Rows may come from the app's docs or a hand test; the Checked column says which.
@@ -80,9 +89,9 @@ Decisions below were settled in a grilling session on 2026-11-21. Treat them as 
 - The `v0.2.0` and `v0.3.0` tags predate this and have no GitHub Release; `bootstrap-sha` starts the first changelog after v0.3.0.
 
 ## Rules for every Thelyv skill (dogfooding round 1, 2026-11-21)
-- **Choices (question tool first, decided 2026-11-22):** if the app has a tool that shows a multiple-choice question card (AskUserQuestion in Claude, request_user_input in Codex, ask_user in Gemini CLI and Copilot CLI, AskQuestion in Cursor, question in OpenCode, ask_followup_question in Cline and Roo Code), every choice goes through it, including the choices written as numbered lists in a skill's other files (`reminders.md`, `areas.md` and the rest). The list of names is examples only; the rule is "any tool that shows a question with options". The AI writes each question itself; nothing is hardcoded. The app never turns a plain-text list into a card, so each skill must say to use the tool. These tools take 2–4 options, so the 5-option `/thelyv` menu stays a numbered list, as do the "Next on your goal path" steps inside each answer.
+- **Choices (question tool first, decided 2026-11-22):** if the app has a tool that shows a multiple-choice question card (AskUserQuestion in Claude, request_user_input in Codex, ask_user in Gemini CLI and Copilot CLI, AskQuestion in Cursor, question in OpenCode, ask_followup_question in Cline and Roo Code), every choice goes through it, including the choices written as numbered lists in a skill's other files (`reminders.md`, `areas.md` and the rest). The list of names is examples only; the rule is "any tool that shows a question with options". The AI writes each question itself; nothing is hardcoded. The app never turns a plain-text list into a card, so each skill must say to use the tool. These tools take 2–4 options, so the 6-option `/thelyv` menu stays a numbered list, as do the "Next on your goal path" steps inside each answer.
   - **Fallback (ChatGPT and Grok chat apps, any app without the tool, or the tool fails):** a numbered list; the user can answer with a bare number or several ("2, 1"). Each option is distinct, and combinations get their own number ("3. Both"). One question per message.
-  - The rule is copied into each skill's "Choices" line on purpose (see "Shared files"); keep the five in step.
+  - The rule is copied into each skill's "Choices" line on purpose (see "Shared files"); keep the six in step.
 - **Recommended:** the best option goes first, tagged "(Recommended)": the path that reaches the goal most directly. In user-driven mode, only setup choices get the tag.
 - **Acronyms:** only real acronyms; never shorten long words into new ones. In diagrams use the short form, list the expansions right below, and keep it to 4 or fewer per diagram (split or simplify otherwise).
 - **How people learn:** at most about 4 new ideas per answer; example before rule; an optional recall check now and then (goal-driven only); link new ideas to what the user knows (goal-driven only); every note ends with 3 recall questions; when someone struggles, simplify rather than add.
@@ -143,7 +152,7 @@ Decisions below were settled in a grilling session on 2026-11-21. Treat them as 
 - **"Save this to Thelyv"** works in any chat too, not only Thelyv sessions.
 
 ## Areas, smarter save and reminders (grilling round 2, 2026-11-22)
-- **Areas (umbrellas):** a feature of `thelyv-save` and `thelyv-find`, not a sixth skill. Menu option 5: "See what you've learned by area".
+- **Areas (umbrellas):** a feature of `thelyv-save` and `thelyv-find`, not a separate skill. Menu option 6: "See what you've learned by area".
   - On save, Thelyv suggests one area (existing first, or a new one, or none); branches default to the parent's area. Field `umbrella`; still `schema_version 1` (no users yet).
   - New notes go to `Thelyv/<area-slug>/`, with the master note `_<area-slug>.md` beside them (Notion: `umbrella` select + a `<Area> (Thelyv master)` page). Old notes are never moved or edited.
   - The master note is rebuilt from the notes' fields on every save: a "how it fits together" chain, one line per note (date, link, takeaway), mistakes fixed, still fuzzy, next quiz. Grouped by subheadings past ~15 notes.
@@ -186,10 +195,11 @@ Decisions below were settled in a grilling session on 2026-11-21. Treat them as 
 - Is there a link that opens a Claude incognito chat with a message typed in?
 - On a phone, does `https://claude.ai/new?q=` open the Claude app with the message?
 - Does the `thelyv` skill show as plain `/thelyv` in Claude, or as `/thelyv:thelyv`?
-- Does `npx skills add avin045/thelyv` install all five skills once the repo is public?
+- Does `npx skills add avin045/thelyv` install all six skills once the repo is public?
 - Do the Notion setup steps in `skills/thelyv-save/connect.md` work in Codex, OpenCode and Cursor?
+- `thelyv-fill-pieces`: does a long paste get a short Right / Off / Missing reply, and does "I don't know anything" point to `thelyv-goal`?
 - Do the per-agent installs in the README work once the repo is public: Codex marketplace, `gemini extensions install`, `agy plugin install`, Cursor loading the root `plugin.json`?
-- Grok: does `grok plugin install avin045/thelyv` install all five skills? Can the Grok app load skills at all? Does `https://grok.com/?q=hello` open a chat with "hello" typed in, and does `#private` work with it?
+- Grok: does `grok plugin install avin045/thelyv` install all six skills? Can the Grok app load skills at all? Does `https://grok.com/?q=hello` open a chat with "hello" typed in, and does `#private` work with it?
 - Reminders: can a skill create ChatGPT Scheduled Tasks, Gemini scheduled actions or Claude scheduled tasks from a normal chat? Does the scheduled prompt reach the user's notes? Do their runs notify the user (ChatGPT Tasks, Gemini scheduled actions, Claude Desktop scheduled tasks)?
 - Desktop reminders (`local-reminders.md`): on Windows 11 the notification showed with notifications on, and the fallback window with them off (both checked by hand, 2026-11-22); the `sh` script's logic passed in Git Bash. Still to test: Task Scheduler firing at the set time, macOS launchd plus the `osascript` notification (Script Editor permission prompt), Linux systemd timer plus `notify-send`, and WSL through `powershell.exe`.
 - PDF: which PDF tools exist in each app's code sandbox (Claude, ChatGPT, Grok)?

@@ -18,6 +18,7 @@
   "skills": [
     "./skills/thelyv",
     "./skills/thelyv-goal",
+    "./skills/thelyv-fill-pieces",
     "./skills/thelyv-interview-mode",
     "./skills/thelyv-find",
     "./skills/thelyv-save"

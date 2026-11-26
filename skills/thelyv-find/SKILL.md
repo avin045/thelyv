@@ -26,7 +26,7 @@ Look for the user's settings with whatever you have: on the user's own computer 
 
 - **"Thelyv quiz: <title or area>"** (from a reminder): go straight to **Quiz** for that note or area.
 - **"Quiz me on <area>"**, or the user names an area: go to **Open an area**.
-- **"See what I've learned by area"** (menu option 5): list the areas, numbered, each with its note count and last date ("1. Data engineering · 4 notes · last Nov 15"). The user picks one: **Open an area**.
+- **"See what I've learned by area"** (menu option 6): list the areas, numbered, each with its note count and last date ("1. Data engineering · 4 notes · last Nov 15"). The user picks one: **Open an area**.
 - **Anything else:** **Search**.
 
 ## Search

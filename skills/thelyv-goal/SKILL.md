@@ -1,6 +1,6 @@
 ---
 name: thelyv-goal
-description: Thelyv learning session. Runs a goal-focused learning session in goal-driven or user-driven mode, catches drift, and moves deep tangents into branch chats or quick looks. Use when the user invokes the thelyv-goal skill (/thelyv-goal, /thelyv:thelyv-goal in the Claude plugin, or $thelyv-goal in Codex), picks "Learn a topic" from the /thelyv menu, wants to learn a topic with Thelyv, or sends a message starting "Thelyv branch".
+description: Thelyv learning session. Runs a goal-focused learning session in goal-driven or user-driven mode, catches drift, and moves deep tangents into branch chats or quick looks. For a topic the user is new to and wants to learn from scratch; a topic they half know, with pieces missing, goes to thelyv-fill-pieces instead. Use when the user invokes the thelyv-goal skill (/thelyv-goal, /thelyv:thelyv-goal in the Claude plugin, or $thelyv-goal in Codex), picks "Learn a new topic from scratch" from the /thelyv menu, wants to learn a new topic with Thelyv, or sends a message starting "Thelyv branch".
 ---
 
 # Thelyv goal session
