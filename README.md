@@ -48,4 +48,4 @@ npx skills add avin045/thelyv
 Thelyv offers every choice as a question card where your app has one (Claude, Codex, Gemini CLI, Cursor and others). Elsewhere, choices are numbered, so you can answer with just "1".
 
 ## Status
-v0.5.2: dogfooding. See [AGENTS.md](AGENTS.md) for the full product and architecture notes. <!-- x-release-please-version -->
+v0.6.0: dogfooding. See [AGENTS.md](AGENTS.md) for the full product and architecture notes. <!-- x-release-please-version -->

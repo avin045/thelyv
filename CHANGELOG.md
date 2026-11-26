@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.0](https://github.com/avin045/thelyv/compare/v0.5.2...v0.6.0) (2026-11-26)
+
+
+### Features
+
+* thelyv-fill-pieces, a sixth skill for topics you half know ([c6e1a60](https://github.com/avin045/thelyv/commit/c6e1a609ede2f41c78a775a58268228aea029c7a))
+
 ## [0.5.2](https://github.com/avin045/thelyv/compare/v0.5.1...v0.5.2) (2026-11-23)
 
 

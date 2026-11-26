@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "thelyv",
-  "version": "0.5.2",
+  "version": "0.6.0",
   "description": "A learning guide for any AI chat: goal-focused sessions with drift checks and branch chats, interview prep for the time you have left, notes saved to your own Notion or Google Drive, and quizzes on what you learned.",
   "author": {
     "name": "Avin",
